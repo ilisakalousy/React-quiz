@@ -91,5 +91,5 @@ export const StyledError = styled.div`
     top: 5px;
     right: -75px;
     font-size: 12px;
-    color: grey;
+    color: #E32636;
 `;

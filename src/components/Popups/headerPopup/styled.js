@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as Plus } from "../../assets/plus.svg";
+import { ReactComponent as Plus } from "../../../assets/plus.svg";
 
 export const PopupWrapper = styled.div`
     width: 100%;

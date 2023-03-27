@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -7,7 +7,6 @@ import {
     InputWrapper,
     StyledInput,
     EmailPlaceholder,
-    PasswordPlaceholder,
     SignupButton,
     StyledError
 } from "./styled";

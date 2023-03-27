@@ -28,45 +28,33 @@ export const StyledInput = styled.input`
 `;
 
 export const EmailPlaceholder = styled.span`
-    position: absolute;
+     position: absolute;
     width: 45px;
-    font-size: ${props => props.value ? "12px" : "14px"};
+    top: -7px;
+    left: 15px;
+    font-size: 12px;
     background-color: #fff;
-    top: ${props => props.value ? "-7px" : "14px"};
-    left: ${props => props.value ? "15px" : "10px"};
     text-align: center;
     user-select: none;
     transition: 0.2s ease;
     pointer-events: none;
     font-weight: 300;
     color: grey;
-
-    ${StyledInput}:focus ~ & {
-        top: -7px;
-        left: 15px;
-        font-size: 12px;
-    }
 `;
 
 export const PasswordPlaceholder = styled.span`
     position: absolute;
     width: 65px;
-    font-size: ${props => props.value ? "12px" : "14px"};
+    font-size: 12px;
     background-color: #fff;
-    top: ${props => props.value ? "-7px" : "14px"};
-    left: ${props => props.value ? "15px" : "10px"};
+    top: -7px;
+    left: 15px ;
     text-align: center;
     user-select: none;
     transition: 0.2s ease;
     pointer-events: none;
     font-weight: 300;
     color: grey;
-
-    ${StyledInput}:focus ~ & {
-        top: -7px;
-        left: 15px;
-        font-size: 12px;
-    }
 `;
 
 export const InputWrapper = styled.div`
@@ -90,4 +78,17 @@ export const LoginButton = styled.button`
     &:hover {
         background-color: ${props => props.theme.regularHoverCol};
     }
+
+    &:disabled {
+        background-color: #6495ED;
+        cursor: default;
+    }
+`;
+
+export const StyledError = styled.div`
+    position: absolute;
+    top: 5px;
+    right: -75px;
+    font-size: 12px;
+    color: #E32636;
 `;

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
- 
+import React from 'react';
+import { useForm } from 'react-hook-form'; 
+
 import {
     PopupLeft,
     StyledHeading,
@@ -7,40 +8,67 @@ import {
     StyledInput,
     EmailPlaceholder,
     PasswordPlaceholder,
-    LoginButton
+    LoginButton,
+    StyledError
 } from "./styled";
 
 function LoginForm() {
 
-    const [emailValue, setEmailValue] = useState('');
-    const [passwordValue, setPasswordValue] = useState('');
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+        reset
+    } = useForm({
+        mode: 'onChange'
+    });
+
+    const onSubmit = (data) => {
+        reset();
+    };
 
   return (
-<PopupLeft>
+<PopupLeft
+    onSubmit={handleSubmit(onSubmit)}
+>
     <StyledHeading>Log in</StyledHeading>
     <InputWrapper>
         <StyledInput 
-            value={emailValue}
-            onChange={e => setEmailValue(e.target.value)}
+            {...register("userEmail", {
+                pattern:  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                required: true
+            }
+            )}
         />
         <EmailPlaceholder
-            value={emailValue}
+            
         >
             Email:
         </EmailPlaceholder>
+        <StyledError>
+                {errors?.userEmail && <p>Invalid email</p>}
+            </StyledError>
     </InputWrapper>
     <InputWrapper>
         <StyledInput 
-            value={passwordValue}
-            onChange={e => setPasswordValue(e.target.value)}
+            type="password"
+           {...register("userPassword", {
+            required: true,
+            minLength: 8,
+            pattern:  /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{6,}/g,
+           })}
         />
-        <PasswordPlaceholder
-             value={passwordValue}
-        >
+        <PasswordPlaceholder>
             Password:
         </PasswordPlaceholder>
     </InputWrapper>
-    <LoginButton>Submit</LoginButton>
+    <LoginButton
+        type="submit" 
+        disabled={!isValid}
+        onClick={onSubmit}
+    >
+        Submit
+    </LoginButton>
 </PopupLeft>
 // {/* <div>
 //     <div id="signInDiv"></div>

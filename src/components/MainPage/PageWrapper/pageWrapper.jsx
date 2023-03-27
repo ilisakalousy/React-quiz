@@ -4,7 +4,7 @@ import { StyledPageWrapper } from './styled';
 import QuizListWrapper from '../QuizWrapper/quizWrapper';
 import { quizCards } from '../../../mocks/cards';
 import Header from '../../Layout/Header/header';
-import LogInPopup from '../../Popups/popup';
+import HeaderPopup from '../../Popups/headerPopup/headerPopup';
 
 function PageWrapper() {
   
@@ -14,7 +14,7 @@ function PageWrapper() {
 
   const searchedQuizes = useMemo(() => {
     return quizCards.filter((quizCard) => quizCard.title.toLowerCase().includes(search.toLowerCase()))
-  }, [search, quizCards])
+  }, [search])
 
   return (
     <StyledPageWrapper>
@@ -29,7 +29,7 @@ function PageWrapper() {
         <QuizListWrapper
           quizCards={searchedQuizes}
         />
-        <LogInPopup 
+        <HeaderPopup 
           isShowLog={isShowLog}
           setIsShowLog={setIsShowLog}
           isShowSign={isShowSign}
