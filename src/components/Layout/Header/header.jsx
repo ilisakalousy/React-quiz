@@ -5,7 +5,7 @@ import SearchInput from '../Search/search';
 import Logo from '../../UI/Logo/logo';
 import { StyledHeader, HeaderContent, LoginButton, SignupButton, AddingButton, StyledPlus } from './styled';
  
-function Header({ search, setSearch, setIsShowLog, setIsShowSign }) {
+function Header({ search, setSearch, setIsShowLog, setIsShowSign, setIsShowNewQuiz }) {
   return (
     <StyledHeader>
         <HeaderContent>
@@ -16,7 +16,9 @@ function Header({ search, setSearch, setIsShowLog, setIsShowSign }) {
                 search={search}
                 setSearch={setSearch}
             />
-            <AddingButton>
+            <AddingButton
+                onClick={() => setIsShowNewQuiz(true)}
+            >
                 <StyledPlus />
             </AddingButton>
             <LoginButton

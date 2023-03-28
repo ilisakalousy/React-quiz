@@ -4,13 +4,15 @@ import { StyledPageWrapper } from './styled';
 import QuizListWrapper from '../QuizWrapper/quizWrapper';
 import { quizCards } from '../../../mocks/cards';
 import Header from '../../Layout/Header/header';
-import HeaderPopup from '../../Popups/headerPopup/headerPopup';
+import HeaderPopup from '../../Popups/HeaderPopup/headerPopup';
+import NewQuiz from '../../Popups/NewQuiz/newQuiz';
 
 function PageWrapper() {
   
   const [search, setSearch] = useState('');
   const [isShowLog, setIsShowLog] = useState(false);
   const [isShowSign, setIsShowSign] = useState(false);
+  const [isShowNewQuiz, setIsShowNewQuiz] = useState(false);
 
   const searchedQuizes = useMemo(() => {
     return quizCards.filter((quizCard) => quizCard.title.toLowerCase().includes(search.toLowerCase()))
@@ -21,10 +23,9 @@ function PageWrapper() {
         <Header 
           search={search}
           setSearch={setSearch}
-          isShowLog={isShowLog}
           setIsShowLog={setIsShowLog}
-          isShowSign={isShowSign}
           setIsShowSign={setIsShowSign}
+          setIsShowNewQuiz={setIsShowNewQuiz}
         />
         <QuizListWrapper
           quizCards={searchedQuizes}
@@ -34,6 +35,10 @@ function PageWrapper() {
           setIsShowLog={setIsShowLog}
           isShowSign={isShowSign}
           setIsShowSign={setIsShowSign}
+        />
+        <NewQuiz 
+          isShowNewQuiz={isShowNewQuiz}
+          setIsShowNewQuiz={setIsShowNewQuiz}
         />
     </StyledPageWrapper>
   );

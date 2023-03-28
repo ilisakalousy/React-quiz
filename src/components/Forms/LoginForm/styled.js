@@ -10,23 +10,6 @@ export const StyledHeading = styled.h2`
     margin: 0;
 `;
 
-export const StyledInput = styled.input`
-    width: 300px;
-    height: 45px;
-    border: 1px solid ${props => props.theme.regularCol};
-    border-radius: 10px;
-    font-size: 14px;
-    padding: 0 10px;
-
-    &:focus {
-        outline: none;
-    }
-
-    &:placeholder-shown {
-        border-color: red;
-    }
-`;
-
 export const EmailPlaceholder = styled.span`
      position: absolute;
     width: 45px;
@@ -91,4 +74,18 @@ export const StyledError = styled.div`
     right: -75px;
     font-size: 12px;
     color: #E32636;
+`;
+
+export const StyledInput = styled.input`
+    width: 300px;
+    height: 45px;
+    border: 1px solid ${props => props.theme.regularCol};
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 0 10px;
+    transition: 0.3s ease ;
+
+    &:focus {
+        outline: none;
+    }
 `;

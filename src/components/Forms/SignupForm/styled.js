@@ -22,10 +22,6 @@ export const StyledInput = styled.input`
     &:focus {
         outline: none;
     }
-
-    &:placeholder-shown {
-        border-color: red;
-    }
 `;
 
 export const EmailPlaceholder = styled.span`
@@ -89,7 +85,7 @@ export const SignupButton = styled.input`
 export const StyledError = styled.div`
     position: absolute;
     top: 5px;
-    right: -75px;
+    right: -80px;
     font-size: 12px;
     color: #E32636;
 `;

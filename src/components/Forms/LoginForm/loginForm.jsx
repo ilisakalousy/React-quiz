@@ -1,15 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form'; 
 
+import Input from '../../UI/Input/input';
+
 import {
     PopupLeft,
     StyledHeading,
     InputWrapper,
-    StyledInput,
     EmailPlaceholder,
     PasswordPlaceholder,
     LoginButton,
-    StyledError
+    StyledError,
+    StyledInput
 } from "./styled";
 
 function LoginForm() {
@@ -36,26 +38,20 @@ function LoginForm() {
         <StyledInput 
             {...register("userEmail", {
                 pattern:  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                required: true
-            }
-            )}
+                required: true,
+            })}
         />
         <EmailPlaceholder
-            
         >
             Email:
         </EmailPlaceholder>
-        <StyledError>
-                {errors?.userEmail && <p>Invalid email</p>}
-            </StyledError>
     </InputWrapper>
     <InputWrapper>
         <StyledInput 
             type="password"
            {...register("userPassword", {
+            pattern:  /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/,
             required: true,
-            minLength: 8,
-            pattern:  /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{6,}/g,
            })}
         />
         <PasswordPlaceholder>
@@ -70,9 +66,6 @@ function LoginForm() {
         Submit
     </LoginButton>
 </PopupLeft>
-// {/* <div>
-//     <div id="signInDiv"></div>
-// </div> */}
   );
 };
  

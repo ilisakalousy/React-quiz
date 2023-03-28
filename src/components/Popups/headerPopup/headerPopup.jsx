@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import LoginForm from '../../Forms/LoginForm/loginForm'; 
+import CloseButton from '../../UI/CloseButton/closeButton';
 
 import { 
     PopupWrapper, 
     PopupBody,
-    CloseButton,
 } from './styled';
 import SignupForm from '../../Forms/SignupForm/signupForm';
 
