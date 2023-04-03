@@ -1,5 +1,7 @@
 import React from 'react';
  
+import NewQuizPage from '../../CreateQuiz/NewQuizPage/newQuizPage';
+
 import {
     PopupWrapper,
     PopupBody,
@@ -13,7 +15,7 @@ function NewQuiz({ isShowNewQuiz, setIsShowNewQuiz }) {
         <PopupBody
             onClick={e => e.stopPropagation()}
         >
-
+          <NewQuizPage />
         </PopupBody>
     </PopupWrapper>
   ) : null;

@@ -18,4 +18,8 @@ export const PopupBody = styled.div`
     background-color: #fff;
     border-radius: 15px;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;

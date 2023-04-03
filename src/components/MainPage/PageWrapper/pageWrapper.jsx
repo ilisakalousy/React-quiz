@@ -5,7 +5,7 @@ import QuizListWrapper from '../QuizWrapper/quizWrapper';
 import { quizCards } from '../../../mocks/cards';
 import Header from '../../Layout/Header/header';
 import HeaderPopup from '../../Popups/HeaderPopup/headerPopup';
-import NewQuiz from '../../Popups/NewQuiz/newQuiz';
+import NewQuiz from '../../Popups/NewQuizPopup/newQuizPopup';
 
 function PageWrapper() {
   

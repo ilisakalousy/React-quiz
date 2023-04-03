@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form'; 
 
-import Input from '../../UI/Input/input';
-
 import {
     StyledWrapper,
     CreateForm,
@@ -39,7 +37,7 @@ function CreateUser({ signupStep, setSignupStep }) {
         mode: 'all'
     });
 
-    const handlePasswordChange =(e)=>{
+    const handlePasswordChange =(e)=>{ 
         setPasswordValue(e.target.value);
     };
 
