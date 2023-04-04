@@ -42,7 +42,15 @@ export const InputWrapper = styled.div`
     margin-top: 25px;
 `;
 
-export const StyledButton = styled.button`
+export const StyledError = styled.div`
+    position: absolute;
+    top: 5px;
+    right: -85px;
+    font-size: 12px;
+    color: #E32636;
+`;
+
+export const StyledButton = styled.input`
     width: 300px;
     height: 45px;
     background-color: ${props => props.theme.regularCol};

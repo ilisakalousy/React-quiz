@@ -48,7 +48,7 @@ export const InputWrapper = styled.div`
     margin-top: 25px;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.input`
     width: 190px;
     height: 45px;
     background-color: ${props => props.theme.regularCol};
@@ -72,7 +72,7 @@ export const StyledButton = styled.button`
 export const PageAddingButton = styled.button`
     width: 45px;
     height: 45px;
-    background-color: #2ECC71;
+    background-color: rgba(46, 204, 113, 0.9);
     border: none;
     color: #fff;
     border-radius: 10px;
@@ -83,11 +83,11 @@ export const PageAddingButton = styled.button`
     justify-content: center;
 
     &:hover {
-        background-color: #4caf50;
+        background-color: rgba(46, 204, 113, 1);
     }
 
     &:disabled {
-        background-color: #27AE60;
+        background-color: rgba(46, 204, 113, 0.6);
         cursor: default;
     }
 `;

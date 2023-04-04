@@ -1,35 +1,57 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import {
     StyledNewForm,
     StyledInput,
     InputPlaceholder,
     InputWrapper,
-    StyledButton
+    StyledButton,
+    StyledError
 } from './styled';
 
-import QuestionsPage from "../../CreateQuiz/QuestionsPage/questionPage";
+function NewQuizForm({ addingClick }) {
 
+    const [inputValue, setInputValue] = useState('Create');
 
-function NewQuizForm({ pageNumber, setPageNumber, pages, addingClick }) {
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+        reset
+    } = useForm({
+        mode: 'all'
+    });
 
-    const onClickHandler = (e) => {
-        e.preventDefault();
-        setPageNumber(pageNumber + 1);
-        pages.push(<QuestionsPage />)
+    const onSubmit = (data) => {
+        reset();
+        setInputValue('Creating...');
+        return new Promise(resolve => {
+            setTimeout(() => {
+                addingClick();
+            }, 1000)
+        })
     };
 
     return (
-        <StyledNewForm>
+        <StyledNewForm
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <InputWrapper>
-                <StyledInput />
+                <StyledInput 
+                    {...register("quizName", {
+                        pattern: /^[A-Za-z0-9]*$/,
+                        required: true
+                    })}
+                />
                 <InputPlaceholder>Quiz name</InputPlaceholder>
+                <StyledError>{errors?.quizName && <p>*Invalid name</p>}</StyledError>
             </InputWrapper>
             <StyledButton
-                onClick={addingClick}
-            >
-                Create
-            </StyledButton>
+                type="submit"
+                value={inputValue}
+                disabled={!isValid}
+            />
         </StyledNewForm>
     );
 };

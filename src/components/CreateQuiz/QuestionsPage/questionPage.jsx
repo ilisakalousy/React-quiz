@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { useForm } from 'react-hook-form';
 
 import {
     NewPageWrapper,
@@ -15,26 +17,59 @@ import {
  
 function QuestionsPage({ addingClick, backPageHandler, pageNumber }) {
 
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+        reset
+    } = useForm({
+        mode: 'all'
+    });
+
+    const onSubmit = (data) => {
+        reset();
+    };
+
   return (
     <NewPageWrapper>
         <h1>Card №{pageNumber}</h1>
         <InputWrapper>
             <StyledInput 
-
+                {...register("firstOption", {
+                    pattern: /^[A-Za-z0-9]*$/,
+                    required: true,
+                })}
             />
-            <InputPlaceholder>Question 1</InputPlaceholder>
+            <InputPlaceholder>
+                Option 1
+            </InputPlaceholder>
         </InputWrapper>
         <InputWrapper>
-            <StyledInput />
-            <InputPlaceholder>Question 2</InputPlaceholder>
+            <StyledInput 
+                {...register("secondOption", {
+                    pattern: /^[A-Za-z0-9]*$/,
+                    required: true,
+                })}                
+            />
+            <InputPlaceholder>Option 2</InputPlaceholder>
         </InputWrapper>
         <InputWrapper>
-            <StyledInput />
-            <InputPlaceholder>Question 3</InputPlaceholder>
+            <StyledInput 
+                {...register("thirdOption", {
+                    pattern: /^[A-Za-z0-9]*$/,
+                    required: true,
+                })}
+            />
+            <InputPlaceholder>Option 3</InputPlaceholder>
         </InputWrapper>
         <InputWrapper>
-            <StyledInput />
-            <InputPlaceholder>Question 4</InputPlaceholder>
+            <StyledInput 
+                {...register("fourthOption", {
+                    pattern: /^[A-Za-z0-9]*$/,
+                    required: true,
+                })}
+            />
+            <InputPlaceholder>Option 4</InputPlaceholder>
         </InputWrapper>
         <BtnWrapper>
         <BackButton
@@ -42,11 +77,14 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber }) {
         >
             <StyledLeftArrow />
         </BackButton>
-            <StyledButton>
-                Create
-            </StyledButton>
+            <StyledButton 
+                type="submit"
+                value="Create"
+                disabled={!isValid}
+            />
             <PageAddingButton
                 onClick={addingClick}
+                disabled={!isValid}
             >
                 <StyledPlus />
             </PageAddingButton>
