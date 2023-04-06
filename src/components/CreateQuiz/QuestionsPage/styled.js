@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ReactComponent as Plus } from "../../../assets/plus.svg";
 import { ReactComponent as LeftArrow } from "../../../assets/leftArrow.svg";
 
-export const NewPageWrapper = styled.div`
+export const NewPageWrapper = styled.form`
     width: 100%;
     height: 100%;
     display: flex;
@@ -45,11 +45,15 @@ export const InputWrapper = styled.div`
     position: relative;
     width: 300px;
     height: 45px;
-    margin-top: 25px;
+    margin-top: 15px;
+
+    &:nth-child(3) {
+        margin-top: 55px;
+    }
 `;
 
 export const StyledButton = styled.input`
-    width: 190px;
+    width: 150px;
     height: 45px;
     background-color: ${props => props.theme.regularCol};
     border: none;
@@ -104,7 +108,14 @@ export const BtnWrapper = styled.div`
     width: 300px;
 `;
 
-export const BackButton = styled.button`
+export const StyledRightArrow = styled(LeftArrow)`
+    width: 35px;
+    height: 35px;
+    transform: rotate(180deg);
+    stroke: #000;
+`;
+
+export const ArrowButton = styled.button`
     width: 45px;
     height: 45px;
     background-color: #f0f0f0;
@@ -120,10 +131,23 @@ export const BackButton = styled.button`
     &:hover {
         background-color: #e4e4e4;
     }
+
+    &:disabled {
+        background-color: rgba(228, 228, 228, 0.3);
+        cursor: default;
+    }
+
+    & > ${StyledRightArrow} {
+        stroke: rgba(0, 0, 0, 0.3);
+    }
 `;
 
 export const StyledLeftArrow = styled(LeftArrow)`
     width: 35px;
     height: 35px;
     stroke: #000;
+`;
+
+export const StyledQuestion = styled(StyledInput)`
+    
 `;

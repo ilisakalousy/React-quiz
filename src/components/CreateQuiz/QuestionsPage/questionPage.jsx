@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState }  from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -11,11 +10,13 @@ import {
     StyledPlus,
     BtnWrapper,
     PageAddingButton,
-    BackButton,
+    ArrowButton,
     StyledLeftArrow,
+    StyledRightArrow,
+    StyledQuestion,
 } from "./styled";
  
-function QuestionsPage({ addingClick, backPageHandler, pageNumber }) {
+function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandler, isNextDisabled, newQuizMap }) {
 
     const {
         register,
@@ -27,18 +28,41 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber }) {
     });
 
     const onSubmit = (data) => {
-        reset();
+        newQuizMap.set(`quizName_#${pageNumber}`, newQuizData)
+        const json = JSON.stringify(Object.fromEntries(newQuizMap))
+        console.log(json)
     };
 
+    const [newQuizData, setNewQuizData] = useState({
+        question: '',
+        firstAnswer: '',
+        secondAnswer: '',
+        thirdAnswer: '',
+        fourthAnswer: '',
+    })
+
   return (
-    <NewPageWrapper>
-        <h1>Card №{pageNumber}</h1>
+    <NewPageWrapper
+        onSubmit={handleSubmit(onSubmit)}
+    >
+        <h1>Page №{pageNumber}</h1>
+        <InputWrapper>
+            <StyledQuestion 
+                {...register("quizQuestion", {
+                    required: true,
+                })}
+                value={newQuizData.question}
+                onChange={e => setNewQuizData({...newQuizData, question: e.target.value})}
+            />
+            <InputPlaceholder>Question</InputPlaceholder>
+        </InputWrapper>
         <InputWrapper>
             <StyledInput 
                 {...register("firstOption", {
-                    pattern: /^[A-Za-z0-9]*$/,
                     required: true,
                 })}
+                value={newQuizData.firstAnswer}
+                onChange={e => setNewQuizData({...newQuizData, firstAnswer: e.target.value})}
             />
             <InputPlaceholder>
                 Option 1
@@ -47,36 +71,45 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber }) {
         <InputWrapper>
             <StyledInput 
                 {...register("secondOption", {
-                    pattern: /^[A-Za-z0-9]*$/,
                     required: true,
-                })}                
+                })}       
+                value={newQuizData.secondAnswer}
+                onChange={e => setNewQuizData({...newQuizData, secondAnswer: e.target.value})}
             />
             <InputPlaceholder>Option 2</InputPlaceholder>
         </InputWrapper>
         <InputWrapper>
             <StyledInput 
                 {...register("thirdOption", {
-                    pattern: /^[A-Za-z0-9]*$/,
                     required: true,
                 })}
+                value={newQuizData.thirdAnswer}
+                onChange={e => setNewQuizData({...newQuizData, thirdAnswer: e.target.value})}
             />
             <InputPlaceholder>Option 3</InputPlaceholder>
         </InputWrapper>
         <InputWrapper>
             <StyledInput 
                 {...register("fourthOption", {
-                    pattern: /^[A-Za-z0-9]*$/,
                     required: true,
                 })}
+                value={newQuizData.fourthAnswer}
+                onChange={e => setNewQuizData({...newQuizData, fourthAnswer: e.target.value})}
             />
             <InputPlaceholder>Option 4</InputPlaceholder>
         </InputWrapper>
         <BtnWrapper>
-        <BackButton
+        <ArrowButton
             onClick={backPageHandler}
         >
             <StyledLeftArrow />
-        </BackButton>
+        </ArrowButton>
+        <ArrowButton
+            onClick={nextPageHandler}
+            disabled={!isNextDisabled}
+        >
+            <StyledRightArrow />
+        </ArrowButton>
             <StyledButton 
                 type="submit"
                 value="Create"
@@ -84,7 +117,7 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber }) {
             />
             <PageAddingButton
                 onClick={addingClick}
-                disabled={!isValid}
+                disabled={!isValid && !isNextDisabled}
             >
                 <StyledPlus />
             </PageAddingButton>

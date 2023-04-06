@@ -13,8 +13,8 @@ function NewQuizPage() {
   const [pageNumber, setPageNumber] = useState(0);
   const [pages, setPages] = useState([]);
 
-
   const addingClick = (e) => {
+    e.preventDefault();
     const newPage = `item-${pageNumber}`;
     for (let page = 0; page <= pageNumber; page++) {
       setPages([...pages, newPage]);
@@ -22,10 +22,18 @@ function NewQuizPage() {
     setPageNumber(pageNumber + 1); 
   };
 
-  const backPageHandler = () => {
+  const backPageHandler = (e) => {
+    e.preventDefault();
     setPageNumber(pageNumber - 1);
     pages.pop();
   };
+
+  const nextPageHandler = (e) => {
+    e.preventDefault();
+    setPageNumber(pageNumber + 1);
+  };
+
+  const newQuizMap = new Map();
 
   return (
     <StyledNewQuiz>
@@ -43,6 +51,8 @@ function NewQuizPage() {
             addingClick={addingClick}
             pageNumber={pageNumber}
             backPageHandler={backPageHandler}
+            nextPageHandler={nextPageHandler}
+            newQuizMap={newQuizMap}
          />
       }
     </StyledNewQuiz>

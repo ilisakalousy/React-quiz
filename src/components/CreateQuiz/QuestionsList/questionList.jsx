@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 
 import {
     StyledList,
@@ -7,7 +7,9 @@ import {
 
 import QuestionsPage from '../QuestionsPage/questionPage';
  
-function QuestionsList({ pages, addingClick, pageNumber, backPageHandler }) {
+function QuestionsList({ pages, addingClick, pageNumber, backPageHandler, nextPageHandler, newQuizMap }) {
+
+  const isNextDisabled = pages.length - 1 === pageNumber;
 
   return (
     <StyledList>
@@ -20,6 +22,9 @@ function QuestionsList({ pages, addingClick, pageNumber, backPageHandler }) {
               addingClick={addingClick}
               backPageHandler={backPageHandler}
               pageNumber={pageNumber}
+              nextPageHandler={nextPageHandler}
+              isNextDisabled={isNextDisabled}
+              newQuizMap={newQuizMap}
             />)
           }}
         )

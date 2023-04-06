@@ -41,7 +41,8 @@ function NewQuizForm({ addingClick }) {
                 <StyledInput 
                     {...register("quizName", {
                         pattern: /^[A-Za-z0-9]*$/,
-                        required: true
+                        required: true,
+                        minLength: 4,
                     })}
                 />
                 <InputPlaceholder>Quiz name</InputPlaceholder>
