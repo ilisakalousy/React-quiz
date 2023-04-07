@@ -30,7 +30,6 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandl
     const onSubmit = (data) => {
         newQuizMap.set(`quizName_#${pageNumber}`, newQuizData)
         const json = JSON.stringify(Object.fromEntries(newQuizMap))
-        console.log(json)
     };
 
     const [newQuizData, setNewQuizData] = useState({
