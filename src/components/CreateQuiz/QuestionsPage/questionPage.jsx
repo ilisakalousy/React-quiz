@@ -1,6 +1,8 @@
 import React, { useState }  from 'react';
 import { useForm } from 'react-hook-form';
 
+import AreUSure from '../../Popups/micro/micro';
+
 import {
     NewPageWrapper,
     StyledButton,
@@ -16,7 +18,16 @@ import {
     StyledQuestion,
 } from "./styled";
  
-function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandler, isNextDisabled, newQuizMap }) {
+function QuestionsPage({ 
+    addingClick, // adds page
+    backPageHandler, // go to previous page
+    pageNumber, // number of current page
+    setPageNumber, // set page number 
+    nextPageHandler, // go to next page
+    isNextDisabled, // is this a last page ? 
+    isShowMicro, // are you sure ?
+    setIsShowMicro // are you sure ? state changer
+}) {
 
     const {
         register,
@@ -28,30 +39,37 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandl
     });
 
     const onSubmit = (data) => {
-        newQuizMap.set(`quizName_#${pageNumber}`, newQuizData)
-        const json = JSON.stringify(Object.fromEntries(newQuizMap))
     };
 
-    const [newQuizData, setNewQuizData] = useState({
-        question: '',
-        firstAnswer: '',
-        secondAnswer: '',
-        thirdAnswer: '',
-        fourthAnswer: '',
-    })
+    const areYouSure = (e) => {
+        e.preventDefault();
+        setPageNumber(0);
+        setIsShowMicro(false);
+
+    };
 
   return (
     <NewPageWrapper
         onSubmit={handleSubmit(onSubmit)}
     >
         <h1>Page №{pageNumber}</h1>
+        <AreUSure
+            setIsShow={setIsShowMicro}
+            isShow={isShowMicro}        
+        >
+            <StyledButton
+                as="button"
+                onClick={areYouSure}
+            >
+                Confirm
+            </StyledButton>
+        </AreUSure>
         <InputWrapper>
             <StyledQuestion 
                 {...register("quizQuestion", {
                     required: true,
                 })}
-                value={newQuizData.question}
-                onChange={e => setNewQuizData({...newQuizData, question: e.target.value})}
+                
             />
             <InputPlaceholder>Question</InputPlaceholder>
         </InputWrapper>
@@ -60,8 +78,7 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandl
                 {...register("firstOption", {
                     required: true,
                 })}
-                value={newQuizData.firstAnswer}
-                onChange={e => setNewQuizData({...newQuizData, firstAnswer: e.target.value})}
+                
             />
             <InputPlaceholder>
                 Option 1
@@ -72,8 +89,7 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandl
                 {...register("secondOption", {
                     required: true,
                 })}       
-                value={newQuizData.secondAnswer}
-                onChange={e => setNewQuizData({...newQuizData, secondAnswer: e.target.value})}
+                
             />
             <InputPlaceholder>Option 2</InputPlaceholder>
         </InputWrapper>
@@ -82,8 +98,7 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandl
                 {...register("thirdOption", {
                     required: true,
                 })}
-                value={newQuizData.thirdAnswer}
-                onChange={e => setNewQuizData({...newQuizData, thirdAnswer: e.target.value})}
+                
             />
             <InputPlaceholder>Option 3</InputPlaceholder>
         </InputWrapper>
@@ -92,8 +107,7 @@ function QuestionsPage({ addingClick, backPageHandler, pageNumber, nextPageHandl
                 {...register("fourthOption", {
                     required: true,
                 })}
-                value={newQuizData.fourthAnswer}
-                onChange={e => setNewQuizData({...newQuizData, fourthAnswer: e.target.value})}
+                
             />
             <InputPlaceholder>Option 4</InputPlaceholder>
         </InputWrapper>

@@ -10,7 +10,9 @@ import {
     StyledError
 } from './styled';
 
-function NewQuizForm({ addingClick }) {
+function NewQuizForm({ 
+    addingClick // adds page
+}) {
 
     const [inputValue, setInputValue] = useState('Create');
 
